@@ -8,6 +8,7 @@ const Item  = class {
     constructor (text,date) {
         this.text = text;
         this.date = date;
+        this.score = score;
     };
 
     save() {
@@ -15,7 +16,7 @@ const Item  = class {
         MongoClient.connect('mongodb://localhost:27017').then(client => {
             let db = client.db("itemdb");
             let item = { text: this.text, date: this.date};
-            db.collection("items").insertOne({ text: this.text, date: new Date(this.date)}).then(res => {
+            db.collection("items").insertOne({ text: this.text, date: new Date(this.date), score: this.score}).then(res => {
                 console.log("1 document inserted "+item.date);
                 client.close();
             console.log('connected to db')

@@ -1,8 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 
-const Item = require('./models/item.js')
+const Item = require('./models/item')
 const moment = require('moment')
+const getWatson = require('./scripts/watson')
 
 const requestHandler = (req,res) => {
             const url = req.url;
@@ -34,6 +35,9 @@ const requestHandler = (req,res) => {
                     req.on('end', function () {
                         const parsedBody = Buffer.concat(body).toString();
                         console.log(parsedBody);
+
+                        //this is where the watson part will go
+
                         // write to a file
                         let item = new Item(parsedBody,moment().toISOString());
                         item.save();
