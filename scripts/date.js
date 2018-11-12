@@ -2,7 +2,6 @@ const moment = require('moment');
 const mongodb = require('mongodb');
 MongoClient = mongodb.MongoClient;
 
-
 // MongoClient.connect('mongodb://localhost:27017').then(client => {
 //     db = client.db("itemdb")
 //     items = db.collection('items')
@@ -16,7 +15,7 @@ MongoClient = mongodb.MongoClient;
 
 const getWeek = function () {
     let startDate = moment().subtract(1, 'week').startOf('week').toISOString()
-    let endDate = moment().startOf('week').add(1,'day').toISOString()
+    let endDate = moment().startOf('week').add(3,'day').toISOString()
     let db;
     let items;
     let array;

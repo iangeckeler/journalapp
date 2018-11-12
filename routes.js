@@ -1,9 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 
-const Item = require('./models/item')
-const moment = require('moment')
-const getWatson = require('./scripts/watson')
+const Item = require('./models/item');
+const moment = require('moment');
+const getWatson = require('./scripts/watson');
+const toneSorter = require('./scripts/toneSorter');
 
 const requestHandler = (req,res) => {
             const url = req.url;
@@ -37,14 +38,29 @@ const requestHandler = (req,res) => {
                         console.log(parsedBody);
 
                         //this is where the watson part will go
-
-                        // write to a file
-                        let item = new Item(parsedBody,moment().toISOString());
-                        item.save();
-                        fs.writeFileSync('message.txt', parsedBody)
-                        res.setHeader('Location','/')
-                        res.statusCode = 302;
-                        return res.end();
+                        //this is how you utilize the object
+                        
+                        getWatson(parsedBody).then(res=> {
+                            let tone = JSON.parse(res);
+                            let overallTone = tone.document_tone.tones
+                            // write to a file
+                            let item = new Item(parsedBody,moment().toISOString(),toneSorter(overallTone));
+                            item.save();
+                            fs.writeFileSync('message.txt', parsedBody)
+                            res.setHeader('Location','/')
+                            res.statusCode = 302;
+                            return res.end();
+                        }).catch(err=> {
+                            console.log(err)
+                        })
+                        
+                        // // write to a file
+                        // let item = new Item(parsedBody,moment().toISOString());
+                        // item.save();
+                        // fs.writeFileSync('message.txt', parsedBody)
+                        // res.setHeader('Location','/')
+                        // res.statusCode = 302;
+                        // return res.end();
                     }
                     );
             // res.setHeader('Content-Type','text/html');

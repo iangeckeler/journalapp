@@ -32,8 +32,6 @@ const getWatson = function (text) {
             });
         })
 }
-//read in contenttext file
-const text = requireText('../content.txt', require)
 
 module.exports = getWatson;
 

@@ -5,7 +5,7 @@ const mongodb = require('mongodb');
 MongoClient = mongodb.MongoClient;
 
 const Item  = class {
-    constructor (text,date) {
+    constructor (text,date,score) {
         this.text = text;
         this.date = date;
         this.score = score;
