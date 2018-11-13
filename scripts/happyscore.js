@@ -12,7 +12,7 @@ const happyScore = function(items) {
     }
     return data
 }
-
+// function that writes data to a format for plotly
 const happyScoreArray = function(items) {
     let data={
         x: [],
