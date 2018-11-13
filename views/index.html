@@ -1,0 +1,25 @@
+<html> 
+         <head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+        <h1> <%= message %></h1> 
+        <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <script>
+        var data = [
+  {
+    x: <%-JSON.stringify(data.x)%>,
+    y: <%-JSON.stringify(data.y)%>,
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv', data);
+
+        </script>
+  <script type= 'text/javascript' src='plot.js'></script>
+
+</body>
+    
+</html>

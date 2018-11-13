@@ -6,8 +6,9 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const Item = require('./models/item');
+const getWeek = require('./scripts/getweek')
 const moment = require('moment');
-const getWatson = require('./scripts/watson');
+const getWatson = require('./scripts/getwatson');
 const toneSorter = require('./scripts/toneSorter');
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -34,8 +35,23 @@ app.post('/message',(req,res)=>{
     })
 
     console.log(req.body.message)
-
     res.redirect('/')
+})
+
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'))
+
+
+app.get('/plot',(req,res)=>{
+    getWeek().then(function(data) {
+    console.log(data)
+    res.render('index.html',{message:'hey whats up', data:data})
+    }).catch(err=>{
+        res.render('index')
+        console.log('whoops')
+    })
 })
 
 const server = http.createServer(app)

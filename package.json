@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chart.js": "^2.7.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "moment": "^2.22.2",
     "mongodb": "^3.1.9",
