@@ -21,7 +21,7 @@ const happyScoreArray = function(items) {
     };
     for (let i =0;i<items.length;i++) {
         let text = items[i].text;
-        text = text.replace(/[^a-z0-9 ]+/gi, '')
+        text = text.replace(/[^a-z., ]+/gi, '')
         data.text.push(text);
         data.x.push(new Date(items[i].date));
         data.y.push(items[i].score[0]);     

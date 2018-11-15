@@ -14,12 +14,12 @@ const dummyfun = function(dummy) {
 
     // stop the random and actually retrieve the data from api
     getWatson(dummy[i]).then(res=> {
-        let tone = JSON.parse(res);
+        let tone = res;
         let overallTone = tone.document_tone.tones
         console.log(overallTone);
         console.log(overallTone.length)
         console.log(toneSorter(overallTone))
-        let item = new Item(dummy[i],day,toneSorter(overallTone));
+        let item = new Item(dummy[i],day,toneSorter(overallTone),tone);
         item.save();
     }).catch(err=> {
         console.log(err)

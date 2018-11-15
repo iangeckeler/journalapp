@@ -21,10 +21,12 @@ app.get('/',(req,res,next)=>{
 app.post('/message',(req,res)=>{
     console.log(req.body)
     getWatson(req.body.message).then(res=> {
-        let tone = JSON.parse(res);
+        //tone will be the full object
+        let tone = res;
+        console.log(tone)
         let overallTone = tone.document_tone.tones
         // write to a file
-        let item = new Item(req.body.message,moment().toISOString(),toneSorter(overallTone));
+        let item = new Item(req.body.message,moment().toISOString(),toneSorter(overallTone),tone);
         item.save();
         fs.writeFileSync('message.txt', req.body.message)
         res.setHeader('Location','/')

@@ -23,9 +23,7 @@ const getWatson = function (text) {
                 console.log(error);
                 reject(error)
               } else {
-                //console.log(JSON.stringify(toneAnalysis, null, 2));
-                //currently writes to JSON file and saves it
-                let data = JSON.stringify(toneAnalysis);
+                let data = toneAnalysis;
                 resolve(data)
                 //fs.writeFileSync('toneAnalysis.json', data);
               }
