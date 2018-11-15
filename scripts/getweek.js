@@ -16,6 +16,7 @@ const getWeek = function () {
         db = client.db("itemdb")
         items = db.collection('items')
         return items.find({"date": {"$gte": new Date(startDate), "$lt": new Date(endDate)}}).toArray().then(arr=>{
+            let data;
             data = happyScoreArray(arr);
             return data
         })

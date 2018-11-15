@@ -47,7 +47,7 @@ app.use(express.static(__dirname + '/views'))
 app.get('/plot',(req,res)=>{
     getWeek().then(function(data) {
     console.log(data)
-    res.render('index.html',{message:'hey whats up', data:data})
+    res.render('index.html',{message:'hey whats up', data: data})
     }).catch(err=>{
         res.render('index')
         console.log('whoops')

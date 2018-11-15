@@ -7,16 +7,11 @@
 <body>
         <h1> <%= message %></h1> 
         <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <p id='entry'></p>
         <script>
-        var data = [
-  {
-    x: <%-JSON.stringify(data.x)%>,
-    y: <%-JSON.stringify(data.y)%>,
-    mode: "markers",
-    type: 'scatter'
-  }
-];
-Plotly.newPlot('myDiv', data);
+   let x= <%-JSON.stringify(data.x)%>
+    let y= <%-JSON.stringify(data.y)%>
+let text = <%-JSON.stringify(data.text)%>;
 
         </script>
   <script type= 'text/javascript' src='plot.js'></script>

@@ -16,12 +16,16 @@ const happyScore = function(items) {
 const happyScoreArray = function(items) {
     let data={
         x: [],
-        y: []
+        y: [],
+        text:[]
     };
     for (let i =0;i<items.length;i++) {
+        let text = items[i].text;
+        text = text.replace(/[^a-z0-9 ]+/gi, '')
+        data.text.push(text);
         data.x.push(new Date(items[i].date));
-        data.y.push(items[i].score[0]);
-        }
+        data.y.push(items[i].score[0]);     
+    }
         return data
     }
 
