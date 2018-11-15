@@ -50,7 +50,7 @@ app.use(express.static(__dirname + '/views'))
 app.get('/weekplot',(req,res)=>{
     getWeek().then(function(data) {
     console.log(data)
-    res.render('index.html',{message:'hey whats up', data: data})
+    res.render('index.html',{message:'Week Plot', data: data})
     }).catch(err=>{
         res.render('index')
         console.log('whoops ge')
@@ -60,7 +60,7 @@ app.get('/weekplot',(req,res)=>{
 app.get('/monthplot',(req,res)=>{
     getMonth().then(function(data) {
     console.log(data)
-    res.render('index.html',{message:'hey whats up', data: data})
+    res.render('index.html',{message:'Month Plot', data: data})
     }).catch(err=>{
         res.render('index')
         console.log('whoops')
