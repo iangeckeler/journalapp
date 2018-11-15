@@ -6,7 +6,8 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const Item = require('./models/item');
-const getWeek = require('./scripts/getweek')
+const getWeek = require('./scripts/getweek');
+const getAll = require('./scripts/getallentries');
 const getMonth = require('./scripts/getmonth')
 const moment = require('moment');
 const getWatson = require('./scripts/getwatson');
@@ -50,9 +51,9 @@ app.use(express.static(__dirname + '/views'))
 app.get('/weekplot',(req,res)=>{
     getWeek().then(function(data) {
     console.log(data)
-    res.render('index.html',{message:'Week Plot', data: data})
+    res.render('plot.html',{message:'Week Plot', data: data})
     }).catch(err=>{
-        res.render('index')
+        res.render('plot')
         console.log('whoops ge')
     })
 })
@@ -60,9 +61,19 @@ app.get('/weekplot',(req,res)=>{
 app.get('/monthplot',(req,res)=>{
     getMonth().then(function(data) {
     console.log(data)
-    res.render('index.html',{message:'Month Plot', data: data})
+    res.render('plot.html',{message:'Month Plot', data: data})
     }).catch(err=>{
-        res.render('index')
+        res.render('plot')
+        console.log('whoops')
+    })
+})
+
+app.get('/all',(req,res)=>{
+    getAll().then(function(data) {
+    console.log(data)
+    res.render('all.html',{message:'Month Plot', data: data})
+    }).catch(err=>{
+        res.render('all')
         console.log('whoops')
     })
 })

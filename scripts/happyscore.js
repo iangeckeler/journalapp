@@ -16,15 +16,19 @@ const happyScore = function(items) {
 const happyScoreArray = function(items) {
     let data={
         x: [],
+        id:[],
         y: [],
+        z:[],
         text:[]
     };
     for (let i =0;i<items.length;i++) {
         let text = items[i].text;
         text = text.replace(/[^a-z., ]+/gi, '')
         data.text.push(text);
+        data.id.push(items[i]._id);
         data.x.push(new Date(items[i].date));
         data.y.push(items[i].score[0]);     
+        data.z.push(items[i].score[1]);  
     }
         return data
     }

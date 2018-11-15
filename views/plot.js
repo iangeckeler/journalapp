@@ -11,7 +11,8 @@ console.log('working');
 var myPlot = document.getElementById('myDiv'),
     d3 = Plotly.d3,
     data = [ { x:x, y:y, type:'scatter',
-            mode:'markers', marker:{size:16} } ],
+            mode:'markers', marker:{size:16} },{ x:x, y:z, type:'scatter',
+            mode:'markers', marker:{size:12} } ],
     layout = {
         hovermode:'closest',
         title:'Click on Points'
