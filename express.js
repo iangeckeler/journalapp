@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const Item = require('./models/item');
 const getWeek = require('./scripts/getweek')
+const getMonth = require('./scripts/getmonth')
 const moment = require('moment');
 const getWatson = require('./scripts/getwatson');
 const toneSorter = require('./scripts/toneSorter');
@@ -46,8 +47,18 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'))
 
 
-app.get('/plot',(req,res)=>{
+app.get('/weekplot',(req,res)=>{
     getWeek().then(function(data) {
+    console.log(data)
+    res.render('index.html',{message:'hey whats up', data: data})
+    }).catch(err=>{
+        res.render('index')
+        console.log('whoops ge')
+    })
+})
+
+app.get('/monthplot',(req,res)=>{
+    getMonth().then(function(data) {
     console.log(data)
     res.render('index.html',{message:'hey whats up', data: data})
     }).catch(err=>{
