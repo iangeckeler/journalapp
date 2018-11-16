@@ -27,19 +27,16 @@ app.post('/message',(req,res)=>{
         //tone will be the full object
         let tone = res;
         console.log(tone)
-        let overallTone = tone.document_tone.tones
+        let overallTone = tone.document_tone.tones;
+        let date = new Date(req.body.date).toISOString();
         // write to a file
-        let item = new Item(req.body.message,moment().toISOString(),toneSorter(overallTone),tone);
+        let item = new Item(req.body.message,date,toneSorter(overallTone),tone);
+        console.log(item);
         item.save();
-        fs.writeFileSync('message.txt', req.body.message)
-        res.setHeader('Location','/')
-        res.statusCode = 302;
-        return res.end();
     }).catch(err=> {
         console.log(err)
     })
 
-    console.log(req.body.message)
     res.redirect('/')
 })
 
