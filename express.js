@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const Item = require('./models/item');
+const getById = require('./scripts/getById')
 const getWeek = require('./scripts/getweek');
 const getAll = require('./scripts/getallentries');
 const getMonth = require('./scripts/getmonth')
@@ -65,6 +66,15 @@ app.get('/monthplot',(req,res)=>{
     }).catch(err=>{
         res.render('plot')
         console.log('whoops')
+    })
+})
+
+//route to handle
+app.get('/entry/:id',(req,res) => {
+    console.log(req.params.id)
+    getById(req.params.id).then(data=>{
+        console.log(data)
+        res.render('show.ejs',{data:data})
     })
 })
 
