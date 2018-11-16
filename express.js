@@ -71,7 +71,7 @@ app.get('/monthplot',(req,res)=>{
 app.get('/all',(req,res)=>{
     getAll().then(function(data) {
     console.log(data)
-    res.render('all.html',{message:'Month Plot', data: data})
+    res.render('all.ejs',{message:'Month Plot', data: data})
     }).catch(err=>{
         res.render('all')
         console.log('whoops')
