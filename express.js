@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/',(req,res,next)=>{
-    res.send('<head></head><body><h1>Hello</h1><form action="/message" method ="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>');
+    res.render('create.ejs');
 })
 
 app.post('/message',(req,res)=>{
