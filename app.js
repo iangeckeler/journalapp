@@ -25,17 +25,17 @@ app.get('/new',(req,res,next)=>{
     res.render('create.ejs');
 })
 
-app.post('/message',(req,res)=>{
+app.post('/new',(req,res)=>{
     console.log(req.body)
     getWatson(req.body.message).then(res=> {
         //tone will be the full object
         let tone = res;
-        console.log(tone)
+        //console.log(tone)
         let overallTone = tone.document_tone.tones;
         let date = new Date(req.body.date).toISOString();
         // write to a file
         let item = new Item(req.body.message,date,toneSorter(overallTone),tone);
-        console.log(item);
+        //console.log(item);
         item.save();
     }).catch(err=> {
         console.log(err)
@@ -70,6 +70,16 @@ app.get('/monthplot',(req,res)=>{
     })
 })
 
+app.get('/allplot',(req,res)=>{
+    getAll().then(function(data) {
+    console.log(data)
+    res.render('plot.html',{message:'All Plot', data: data})
+    }).catch(err=>{
+        res.render('plot')
+        console.log('whoops')
+    })
+})
+
 // SHOW route
 app.get('/entry/:id',(req,res) => {
     console.log(req.params.id)
@@ -97,10 +107,10 @@ app.get('/edit/:id',(req,res) => {
     })
 })
 
-//edit route
+//edit route NOTE not complete
 app.put('/edit/:id',(req,res)=> {
     console.log(req)    
-    res.send('Update route')
+    res.redirect('/edit/'+req.params.id)
 })
 
 app.get('/',(req,res)=>{

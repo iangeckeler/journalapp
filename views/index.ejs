@@ -8,9 +8,10 @@
 
 <body>
         <h1> Meet Moody, the AI powered digital Journal</h1> 
-        <h2><a href='/'>Add new entry</a></h2>
+        <h2><a href='/new'>Add new entry</a></h2>
         <h2><a href='/weekplot'>WeekPlot</a></h2>
         <h2><a href='/monthplot'>MonthPlot</a></h2>
+        <h2><a href='/allplot'>Entire History</a></h2>
 
         <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
         <p id='entry'></p>
@@ -27,7 +28,7 @@
 <% for (let i=0;i<data.x.length;i++) { %>
     <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><%= data.id[i] %></h5>
+              <h5 class="card-title"><%= new Date(data.x[i]) %></h5>
               <p class="card-text"><%= data.text[i] %></p>
               <a href="/entry/<%= data.id[i]%>" class="btn btn-primary">View Entry</a>
             </div>

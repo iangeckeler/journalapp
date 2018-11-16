@@ -6,8 +6,8 @@ const happyScoreArray = require('./happyscore')
 
 //returns the data
 const getWeek = function () {
-    let startDate = moment().subtract(1, 'week').startOf('week').toISOString()
-    let endDate = moment().startOf('week').add(3,'day').toISOString()
+    let startDate = moment().subtract(1, 'week').toISOString()
+    let endDate = moment().toISOString()
     let db;
     let items;
     let array;
@@ -22,10 +22,6 @@ const getWeek = function () {
         })
 })   
 }
-
-getWeek().then(res=>{
-  console.log(res)
-})
 
 
 module.exports = getWeek;

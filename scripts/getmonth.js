@@ -6,8 +6,8 @@ const happyScoreArray = require('./happyscore')
 
 //returns the data
 const getMonth = function () {
-    let startDate = moment().subtract(1, 'month').startOf('month').toISOString()
-    let endDate = moment().startOf('month').add(3,'day').toISOString()
+    let startDate = moment().subtract(1, 'month').toISOString()
+    let endDate = moment().toISOString()
     let db;
     let items;
     let array;
