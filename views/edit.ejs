@@ -1,0 +1,18 @@
+<html>
+    <head>  
+
+    </head>
+    <body>  
+            <h1>Your New Entry</h1>
+            <form action="/edit/<%=data._id%>?_method=PUT" method ="POST">
+                <h1><%=data.date%></h1>
+                <input type="date" value = '<%= data.date%>' name="date">
+                <input type="text" name="text" value = '<%= data.text%>' placeholder="Text">
+                <button type="submit">Send</button>
+            </form>
+            <form action="/edit/<%=data._id%>?_method=DELETE" method='POST'>
+                <button>Delete</button>
+            </form>
+            
+    </body>
+</html>
