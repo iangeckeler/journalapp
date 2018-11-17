@@ -24,7 +24,7 @@ router.post('/',(req,res)=>{
                 if (validated) {
                     req.session.isLoggedin = true;
                     req.session.user = user.email;
-                    console.log('validated')
+                    res.redirect('/')
                 } else {
                     res.render('login.ejs',{message:"password doesn't match"})
                 }

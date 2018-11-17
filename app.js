@@ -23,7 +23,7 @@ const toneSorter = require('./scripts/toneSorter');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(
-    session({secret:'my secret', resave:false, saveUninitialized:false})
+    session({secret:'my secret', resave:true, saveUninitialized:true})
 )
 
 // respond with "hello world" when a GET request is made to the homepage
@@ -122,8 +122,8 @@ app.put('/edit/:id',(req,res)=> {
 })
 
 app.get('/',(req,res)=>{
+    console.log(req.session.user)
     getAll().then(function(data) {
-    console.log(data)
     res.render('index.ejs',{data: data})
     }).catch(err=>{
         res.render('index')

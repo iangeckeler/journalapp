@@ -23,9 +23,5 @@ const getAll = function () {
 })   
 }
 
-getAll().then(res=>{
-  console.log(res)
-})
-
 
 module.exports = getAll;
