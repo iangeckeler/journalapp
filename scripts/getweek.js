@@ -5,7 +5,7 @@ MongoClient = mongodb.MongoClient;
 const happyScoreArray = require('./happyscore')
 
 //returns the data
-const getWeek = function () {
+const getWeek = function (period,user) {
     let startDate = moment().subtract(1, 'week').toISOString()
     let endDate = moment().toISOString()
     let db;

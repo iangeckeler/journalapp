@@ -11,19 +11,25 @@ const dummyfun = function(dummy) {
     for (let i = 0;i<dummy.length;i++) {
     //puts the date in 
     let day = moment().subtract(i, 'day').toISOString();
+    let user = 'ian@peepee.com';
+    let tone = {};
+    // version for dummy data with math.random
+    let overallTone = [Math.random(),Math.random()];
+    let item = new Item(dummy[i],day,overallTone,tone,user);
+    item.save();
 
-    // stop the random and actually retrieve the data from api
-    getWatson(dummy[i]).then(res=> {
-        let tone = res;
-        let overallTone = tone.document_tone.tones
-        console.log(overallTone);
-        console.log(overallTone.length)
-        console.log(toneSorter(overallTone))
-        let item = new Item(dummy[i],day,toneSorter(overallTone),tone);
-        item.save();
-    }).catch(err=> {
-        console.log(err)
-    })
+    // // stop the random and actually retrieve the data from api
+    // getWatson(dummy[i]).then(res=> {
+    //     let tone = res;
+    //     let overallTone = tone.document_tone.tones
+    //     console.log(overallTone);
+    //     console.log(overallTone.length);
+    //     console.log(toneSorter(overallTone));
+    //     let item = new Item(dummy[i],day,toneSorter(overallTone),tone);
+    //     item.save();
+    // }).catch(err=> {
+    //     console.log(err)
+    // })
 }
 }
 

@@ -62,36 +62,6 @@ app.use('/login', authRoutes);
 
 app.use('/plot', plotRoutes)
 
-// app.get('/weekplot',(req,res)=>{
-//     getWeek().then(function(data) {
-//     console.log(data)
-//     res.render('plot.html',{message:'Week Plot', data: data})
-//     }).catch(err=>{
-//         res.render('plot')
-//         console.log('whoops')
-//     })
-// })
-
-// app.get('/monthplot',(req,res)=>{
-//     getMonth().then(function(data) {
-//     console.log(data)
-//     res.render('plot.html',{message:'Month Plot', data: data})
-//     }).catch(err=>{
-//         res.render('plot')
-//         console.log('whoops')
-//     })
-// })
-
-// app.get('/allplot',(req,res)=>{
-//     getAll().then(function(data) {
-//     console.log(data)
-//     res.render('plot.html',{message:'All Plot', data: data})
-//     }).catch(err=>{
-//         res.render('plot')
-//         console.log('whoops')
-//     })
-// })
-
 // SHOW route
 app.get('/entry/:id',(req,res) => {
     console.log(req.params.id)
