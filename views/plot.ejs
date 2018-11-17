@@ -2,12 +2,18 @@
          <head>
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
 <body>
         <h1> <%= message %></h1> 
         <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
-        <p id='entry'></p>
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id='entryTitle'></h5>
+              <p class="card-text" id='entry'></p>
+            </div>
+          </div>
         <script>
    let x= <%-JSON.stringify(data.x)%>
     let y= <%-JSON.stringify(data.y)%>
@@ -15,7 +21,7 @@
 let text = <%-JSON.stringify(data.text)%>;
 
         </script>
-  <script type= 'text/javascript' src='/plot.js'></script>
+  <script type= 'text/javascript' src='/js/plot.js'></script>
 
 </body>
     

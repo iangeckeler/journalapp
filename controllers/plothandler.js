@@ -3,7 +3,7 @@ const getEntries = require('../scripts/getentries')
 const monthPlot = function(req,res){
     let user = req.session.user;
     getEntries('month', user).then(data=>{
-        res.render('plot.html',{message:'Month Plot', data: data})
+        res.render('plot.ejs',{message:'Month Plot', data: data})
     }
     ).catch(err=>{
         res.render('plot')
@@ -14,7 +14,7 @@ const monthPlot = function(req,res){
 const allPlot = (req,res)=>{
     let user = req.session.user;
     getEntries('', user).then(data=>{
-        res.render('plot.html',{message:'All Plot', data: data})
+        res.render('plot.ejs',{message:'All Plot', data: data})
     }
     ).catch(err=>{
         res.render('plot')
@@ -25,7 +25,7 @@ const allPlot = (req,res)=>{
 const weekPlot = (req,res)=>{
     let user = req.session.user;
     getEntries('week',user).then((data)=> {
-    res.render('plot.html',{message:'Week Plot', data: data})
+    res.render('plot.ejs',{message:'Week Plot', data: data})
     }).catch(err=>{
         res.render('plot')
         console.log('whoops')

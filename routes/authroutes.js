@@ -9,7 +9,7 @@ const User = require('../models/user')
 
 //login
 router.get('/',(req,res)=>{
-    res.render('login.ejs',{message:''})
+    res.render('login2.ejs',{message:''})
 });
 
 //login

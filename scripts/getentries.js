@@ -9,7 +9,7 @@ const happyScoreArray = require('./happyscore')
 const getEntries = function (period, user) {
     let startDate;
     let endDate;
-    let collectionName = 'items'
+    let collectionName = 'dummy'
     switch (period) {
         case 'week':
             startDate = moment().subtract(1, 'week').toISOString()

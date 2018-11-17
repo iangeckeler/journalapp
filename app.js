@@ -29,6 +29,19 @@ app.use(methodOverride('_method'));
 app.use(
     session({secret:'my secret', resave:true, saveUninitialized:true})
 )
+//check if loggedin
+app.use((req,res,next)=>{
+    if (req.originalUrl =='/login' || 'css/login' || 'js/login') {
+        return next()
+    } else {
+        console.log(req.originalUrl)
+        if (!req.session.loggedIn) {
+            res.redirect('./login')
+        } else {
+            return next()
+        }
+    }
+})
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
@@ -65,11 +78,14 @@ app.use('/plot', plotRoutes)
 
 // SHOW route
 app.get('/entry/:id',(req,res) => {
-    console.log(req.params.id)
-    getById(req.params.id).then(data=>{
-        console.log(data)
-        res.render('show.ejs',{data:data})
-    })
+    if (req.session.loggedIn) {
+        getById(req.params.id).then(data=>{
+            console.log(data)
+            res.render('show.ejs',{data:data})
+        })
+    } else {
+        res.redirect('/login')
+    }
 })
 
 app.delete('/edit/:id',(req,res)=>{
@@ -98,7 +114,6 @@ app.put('/edit/:id',(req,res)=> {
 
 app.get('/',(req,res)=>{
     if (req.session.loggedIn){
-        console.log('yayyy')
         getEntries('',req.session.user).then(function(data) {
             res.render('index.ejs',{data: data})
             }).catch(err=>{
@@ -110,6 +125,8 @@ app.get('/',(req,res)=>{
     }
     
 })
+
+
 
 const server = http.createServer(app)
 

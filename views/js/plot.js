@@ -5,9 +5,6 @@ console.log('working');
 
 
 
-
-
-
 var myPlot = document.getElementById('myDiv'),
     d3 = Plotly.d3,
     data = [ { x:x, y:y, type:'scatter',
@@ -22,8 +19,10 @@ Plotly.newPlot('myDiv', data, layout);
 
 myPlot.on('plotly_click', function(data){
     document.getElementById("entry").innerText = '';
+    document.getElementById("entryTitle").innerText = '';
     console.log(data.points)
     for(var i=0; i < data.points.length; i++){
+        document.getElementById("entryTitle").innerText = 'Entry on: '+x[data.points[i].pointNumber];
         document.getElementById("entry").innerText = text[data.points[i].pointNumber]
     }
 });

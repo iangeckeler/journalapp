@@ -11,7 +11,7 @@ const dummyfun = function(dummy) {
     for (let i = 0;i<dummy.length;i++) {
     //puts the date in 
     let day = moment().subtract(i, 'day').toISOString();
-    let user = 'ian@peepee.com';
+    let user = 'ikcgeckeler@gmail.com';
     let tone = {};
     // version for dummy data with math.random
     let overallTone = [Math.random(),Math.random()];
