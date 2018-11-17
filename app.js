@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const app = express();
 const bodyParser = require('body-parser');
 
+const authRoutes = require('./routes/authroutes');
 const Item = require('./models/item');
 const dataById = require('./scripts/databyid');
 const getById = dataById.getById;
@@ -59,6 +60,8 @@ app.get('/weekplot',(req,res)=>{
         console.log('whoops ge')
     })
 })
+
+app.use('/login',authRoutes);
 
 app.get('/monthplot',(req,res)=>{
     getMonth().then(function(data) {
