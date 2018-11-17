@@ -10,13 +10,16 @@ const moment = require('moment');
 
 
 const authRoutes = require('./routes/authroutes');
+const plotRoutes = require('./routes/plotroutes');
 const Item = require('./models/item');
 const dataById = require('./scripts/databyid');
 const getById = dataById.getById;
 const deleteById = dataById.deleteById;
+
 const getWeek = require('./scripts/getweek');
 const getAll = require('./scripts/getallentries');
 const getMonth = require('./scripts/getmonth')
+
 const getWatson = require('./scripts/getwatson');
 const toneSorter = require('./scripts/toneSorter');
 
@@ -25,6 +28,11 @@ app.use(methodOverride('_method'));
 app.use(
     session({secret:'my secret', resave:true, saveUninitialized:true})
 )
+
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'))
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/new',(req,res,next)=>{
@@ -46,47 +54,43 @@ app.post('/new',(req,res)=>{
     }).catch(err=> {
         console.log(err)
     })
-
     res.redirect('/')
 })
 
-app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/views'))
 
+app.use('/login', authRoutes);
 
-app.get('/weekplot',(req,res)=>{
-    getWeek().then(function(data) {
-    console.log(data)
-    res.render('plot.html',{message:'Week Plot', data: data})
-    }).catch(err=>{
-        res.render('plot')
-        console.log('whoops ge')
-    })
-})
+app.use('/plot', plotRoutes)
 
-app.use('/login',authRoutes);
+// app.get('/weekplot',(req,res)=>{
+//     getWeek().then(function(data) {
+//     console.log(data)
+//     res.render('plot.html',{message:'Week Plot', data: data})
+//     }).catch(err=>{
+//         res.render('plot')
+//         console.log('whoops')
+//     })
+// })
 
-app.get('/monthplot',(req,res)=>{
-    getMonth().then(function(data) {
-    console.log(data)
-    res.render('plot.html',{message:'Month Plot', data: data})
-    }).catch(err=>{
-        res.render('plot')
-        console.log('whoops')
-    })
-})
+// app.get('/monthplot',(req,res)=>{
+//     getMonth().then(function(data) {
+//     console.log(data)
+//     res.render('plot.html',{message:'Month Plot', data: data})
+//     }).catch(err=>{
+//         res.render('plot')
+//         console.log('whoops')
+//     })
+// })
 
-app.get('/allplot',(req,res)=>{
-    getAll().then(function(data) {
-    console.log(data)
-    res.render('plot.html',{message:'All Plot', data: data})
-    }).catch(err=>{
-        res.render('plot')
-        console.log('whoops')
-    })
-})
+// app.get('/allplot',(req,res)=>{
+//     getAll().then(function(data) {
+//     console.log(data)
+//     res.render('plot.html',{message:'All Plot', data: data})
+//     }).catch(err=>{
+//         res.render('plot')
+//         console.log('whoops')
+//     })
+// })
 
 // SHOW route
 app.get('/entry/:id',(req,res) => {
