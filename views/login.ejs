@@ -3,6 +3,9 @@
     </head>
     <body>
         <h1>This is where you Login Motherfuckerrr</h1>
+        <% if(message!=''){ %>
+            <h1><%=message%></h1>
+        <%}%>
         <form method='POST' action='/login/'>
             <input name='email' type='email' placeholder = 'Email'>
             <input name='password' placeholder="Password">

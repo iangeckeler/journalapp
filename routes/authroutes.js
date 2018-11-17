@@ -1,21 +1,40 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const bodyParser = require('body-parser');
+const session = require('express-session')
 
 ///stuff for the database
 const User = require('../models/user')
 
-const bodyParser = require('body-parser');
-
 //login
 router.get('/',(req,res)=>{
-    res.render('login.ejs')
+    res.render('login.ejs',{message:''})
 });
 
 //login
 router.post('/',(req,res)=>{
-    console.log(req.body.email)
-    res.send('nice job')
+    let user = new User(req.body.email,req.body.password);
+    //check if user exists
+    user.exists().then(exists=>{
+        if (!exists){
+            res.render('login.ejs', {message: 'No User exists'});
+        } else {
+            user.validate().then(validated=>{
+                if (validated) {
+                    req.session.isLoggedin = true;
+                    req.session.user = user.email;
+                    console.log('validated')
+                } else {
+                    res.render('login.ejs',{message:"password doesn't match"})
+                }
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+    }).catch(err=>{
+        console.log(err)
+    })
 });
 
 //sign up

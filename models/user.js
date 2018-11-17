@@ -26,7 +26,6 @@ const User  = class {
         return new Promise((resolve,reject)=>{
             db(client=>{
                 let db = client.db('itemdb');
-                console.log(this.email)
                 db.collection('users').findOne({email: this.email}).then(res=>{
                     if (res != null) {
                         resolve(true)
@@ -40,8 +39,34 @@ const User  = class {
         })
 
     }
+    // checks passwords object against the one in the database
+    //returns true or false
+    validate() {
+        return new Promise((resolve,reject) => {
+            db(client =>{
+                let db = client.db('itemdb');
+                db.collection('users').findOne({email:this.email}).then(res=>{
+                    if(res != null){
+                        if(res.password==this.password){
+                            resolve(true)
+                        } else {
+                            resolve(false)
+                        }
+                    } else {
+                        reject('no user found')
+                    }
+                }).catch(err=>{
+                    console.log(err)
+                })
+            })
+        })
+    }
+
+    getPass() {
+        return this.password
+    }
 }
 
-let user1 = new User('ijohnathan@peepee.com','poopoo')
+let user1 = new User('ian@peepee.com','pooasdfasdfadsfadsfpoo')
 
 module.exports = User;

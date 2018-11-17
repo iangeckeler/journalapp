@@ -5,6 +5,9 @@ const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
 const bodyParser = require('body-parser');
+const session = require('express-session')
+const moment = require('moment');
+
 
 const authRoutes = require('./routes/authroutes');
 const Item = require('./models/item');
@@ -14,12 +17,14 @@ const deleteById = dataById.deleteById;
 const getWeek = require('./scripts/getweek');
 const getAll = require('./scripts/getallentries');
 const getMonth = require('./scripts/getmonth')
-const moment = require('moment');
 const getWatson = require('./scripts/getwatson');
 const toneSorter = require('./scripts/toneSorter');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+app.use(
+    session({secret:'my secret', resave:false, saveUninitialized:false})
+)
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/new',(req,res,next)=>{
