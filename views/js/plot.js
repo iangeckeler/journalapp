@@ -12,14 +12,17 @@ var myPlot = document.getElementById('myDiv'),
             mode:'markers', marker:{size:12} } ],
     layout = {
         hovermode:'closest',
-        title:'Click on Points'
+        title: title,
+        width: window.innerWidth,
+        height: 0.6 * window.innerHeight
      };
 
 Plotly.newPlot('myDiv', data, layout);
 
+document.getElementById("entryTitle").innerText = 'Entry on: '+x[0];
+document.getElementById("entry").innerText = text[0];
+
 myPlot.on('plotly_click', function(data){
-    document.getElementById("entry").innerText = '';
-    document.getElementById("entryTitle").innerText = '';
     console.log(data.points)
     for(var i=0; i < data.points.length; i++){
         document.getElementById("entryTitle").innerText = 'Entry on: '+x[data.points[i].pointNumber];

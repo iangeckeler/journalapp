@@ -1,0 +1,48 @@
+ /** Extend boostrap styles **/
+ .card {
+    border:none;
+    color: #50a3a2;
+    background: white;
+    width:75%;
+    display:block;
+    margin:auto;
+}
+
+.wrapper {
+    background: #50a3a2;
+    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+#myDiv {
+  margin:auto;
+}
+
+button {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: 0;
+    background-color: white;
+    border: 0;
+    padding: 10px 15px;
+    color: #53e3a6;
+    border-radius: 3px;
+    width: 250px;
+    cursor: pointer;
+    font-size: 18px;
+    transition-duration: 0.25s;
+  }
+  button:hover {
+    background-color: #f5f7f9;
+  }
+
+  .btn {
+      background: #53e3a6;
+      border-color: white;
+      color: white;
+  }
+  .btn:hover {
+      background: white;
+      color: #53e3a6;
+      border-color: #53e3a6;
+  }

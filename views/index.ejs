@@ -2,19 +2,31 @@
          <head>
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'></script>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel='stylesheet' href='/css/index.css'
 </head>
 
 <body>
-        <h1> Meet Moody, the AI powered digital Journal</h1> 
-        <h2><a href='/new'>Add new entry</a></h2>
-        <h2><a href='/plot/week'>WeekPlot</a></h2>
-        <h2><a href='/plot/month'>MonthPlot</a></h2>
-        <h2><a href='/plot/all'>Entire History</a></h2>
+  <div class='wrapper'>
+        <div class='container-fluid mb-3'>
+          <div class='row'>
+            <div class = 'col-lg-3'>
+                <a href='/new'><button>Add new entry</button></a>
+            </div>
+            <div class = 'col-lg-3'>
+                <a href='/plot/week'><button>WeekPlot</button></a>
+            </div>
+            <div class = 'col-lg-3'>
+                <a href='/plot/month'><button>MonthPlot</button></a>
+            </div>
+            <div class = 'col-lg-3'>
+                <a href='/plot/all'><button>Entire History</button></a>
+            </div>
+          </div>
+        </div>
 
         <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
-        <p id='entry'></p>
         <script>
             let data = <%- JSON.stringify(data) %>
             let id = data.id
@@ -26,14 +38,16 @@
         </script>
 
 <% for (let i=0;i<data.x.length;i++) { %>
-    <div class="card">
+    <div class='container-fluid m-3'></div>
+    <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= new Date(data.x[i]) %></h5>
               <p class="card-text"><%= data.text[i] %></p>
-              <a href="/entry/<%= data.id[i]%>" class="btn btn-primary">View Entry</a>
+              <a href="/entry/<%= data.id[i]%>" class='btn'>View Entry</a>
             </div>
-          </div>
+    </div>
 <% }; %>
+<div class='wrapper'>
 
   <script type= 'text/javascript' src='all.js'></script>
 

@@ -1,0 +1,15 @@
+
+  /** Extend boostrap styles **/
+  .card {
+      border:none;
+      color: white;
+      background: #50a3a2;
+      background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+      width:75%;
+      display:block;
+      margin:auto;
+  }
+
+  #myDiv {
+    margin:auto;
+  }
