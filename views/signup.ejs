@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>This is where you Signup Motherfuckerrr</h1>
+        <form method='POST' action='/login/signup'>
+            <% if(message!=''){ %>
+                <h1><%=message%></h1>
+            <%}%>
+            <input name='email' type='email' placeholder = 'Email'>
+            <input name='password1' placeholder="Password">
+            <input name='password2' placeholder="Confirm Password">
+            <button type='submit'>Sign Up</button>
+        </form>
+    </body>
+</html>

@@ -21,10 +21,27 @@ const User  = class {
             })
         }) 
     };
+
+    exists() {
+        return new Promise((resolve,reject)=>{
+            db(client=>{
+                let db = client.db('itemdb');
+                console.log(this.email)
+                db.collection('users').findOne({email: this.email}).then(res=>{
+                    if (res != null) {
+                        resolve(true)
+                    } else {
+                        resolve(false)
+                    };
+                }).catch(err=>{
+                    reject(err)
+                });
+            })
+        })
+
+    }
 }
 
-let user1 = new User('ian@peepee.com','poopoo')
-
-user1.save()
+let user1 = new User('ijohnathan@peepee.com','poopoo')
 
 module.exports = User;
