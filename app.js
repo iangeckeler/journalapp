@@ -8,17 +8,18 @@ const bodyParser = require('body-parser');
 const session = require('express-session')
 const moment = require('moment');
 
-
+//auth routes
 const authRoutes = require('./routes/authroutes');
+//other routes
+
 const plotRoutes = require('./routes/plotroutes');
 const Item = require('./models/item');
 const dataById = require('./scripts/databyid');
 const getById = dataById.getById;
 const deleteById = dataById.deleteById;
 
-const getWeek = require('./scripts/getweek');
-const getAll = require('./scripts/getallentries');
-const getMonth = require('./scripts/getmonth')
+const getEntries = require('./scripts/getentries');
+
 
 const getWatson = require('./scripts/getwatson');
 const toneSorter = require('./scripts/toneSorter');
@@ -96,13 +97,18 @@ app.put('/edit/:id',(req,res)=> {
 })
 
 app.get('/',(req,res)=>{
-    console.log(req.session.user)
-    getAll().then(function(data) {
-    res.render('index.ejs',{data: data})
-    }).catch(err=>{
-        res.render('index')
-        console.log('whoops')
-    })
+    if (req.session.loggedIn){
+        console.log('yayyy')
+        getEntries('',req.session.user).then(function(data) {
+            res.render('index.ejs',{data: data})
+            }).catch(err=>{
+                res.render('index')
+                console.log('whoops')
+            })
+    } else {
+        res.redirect('/login')
+    }
+    
 })
 
 const server = http.createServer(app)

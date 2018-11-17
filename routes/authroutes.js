@@ -22,7 +22,7 @@ router.post('/',(req,res)=>{
         } else {
             user.validate().then(validated=>{
                 if (validated) {
-                    req.session.isLoggedin = true;
+                    req.session.loggedIn = true;
                     req.session.user = user.email;
                     res.redirect('/')
                 } else {
