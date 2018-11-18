@@ -4,9 +4,9 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const session = require('express-session')
 
-const getWeek = require('../scripts/getweek');
-const getAll = require('../scripts/getallentries');
-const getMonth = require('../scripts/getmonth');
+// const getWeek = require('../scripts/getweek');
+// const getAll = require('../scripts/getallentries');
+// const getMonth = require('../scripts/getmonth');
 const getEntries = require('../scripts/getentries');
 
 const monthPlot = require('../controllers/plothandler').monthPlot;

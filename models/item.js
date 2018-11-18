@@ -1,5 +1,4 @@
 //script to define the Item class for the data.
-
 const moment = require('moment');
 const mongodb = require('mongodb');
 MongoClient = mongodb.MongoClient;

@@ -12,11 +12,15 @@ const mongoUrl = 'mongodb://'+user+':'+pass+'@ds151068.mlab.com:51068/moody';
 const localMongoUrl = 'mongodb://localhost:27017'
 
 const db =function (callback) {
-    MongoClient.connect('mongodb://localhost:27017').then(res=>{
+    MongoClient.connect(localMongoUrl).then(res=>{
         callback(res)
     }).catch(err=> {
         return err
     })
 }
+
+// db((res)=>{
+//     console.log(res)
+// })
 
 module.exports = db;

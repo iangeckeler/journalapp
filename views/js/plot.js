@@ -44,7 +44,7 @@ window.onresize = function() {
     })
   }
 
-document.getElementById("entryTitle").innerText = 'Entry on: '+x[0];
+document.getElementById("entryTitle").innerText = x[0].substring(0, 10);
 document.getElementById("entry").innerText = text[0];
 
 myPlot.on('plotly_click', function(data){
