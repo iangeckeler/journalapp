@@ -1,16 +1,39 @@
 <html>
     <head>
+            <link rel="stylesheet" type="text/css" href="/css/login.css">
     </head>
     <body>
-        <h1>This is where you Signup Motherfuckerrr</h1>
-        <form method='POST' action='/login/signup'>
-            <% if(message!=''){ %>
-                <h1><%=message%></h1>
-            <%}%>
-            <input name='email' type='email' placeholder = 'Email'>
-            <input name='password1' placeholder="Password">
-            <input name='password2' placeholder="Confirm Password">
-            <button type='submit'>Sign Up</button>
-        </form>
+        <div class="wrapper">
+                <div class="container">
+                    <h1>Meet Moody, the AI-powered Journal</h1>
+
+                    <form method='POST' action='/login/signup'>
+                        <input name='email' type='email' placeholder = 'Email'>
+                        <input name='password1' placeholder="Password">
+                        <input name='password2' placeholder="Confirm Password">
+                        <button type='submit'>Sign Up</button>
+                    </form>
+                    <% if(message!=''){ %>
+                        <h1><%=message%></h1>
+                    <%}%>
+                </div>
+                
+                <ul class="bg-bubbles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
     </body>
 </html>

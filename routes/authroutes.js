@@ -9,7 +9,7 @@ const User = require('../models/user')
 
 //login
 router.get('/',(req,res)=>{
-    res.render('login2.ejs',{message:''})
+    res.render('login.ejs',{message:''})
 });
 
 //login
@@ -26,7 +26,7 @@ router.post('/',(req,res)=>{
                     req.session.user = user.email;
                     res.redirect('/')
                 } else {
-                    res.render('login.ejs',{message:"password doesn't match"})
+                    res.render('login.ejs',{message:"Oops, incorrect password"})
                 }
             }).catch(err=>{
                 console.log(err)

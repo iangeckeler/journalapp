@@ -1,16 +1,41 @@
 <html>
     <head>
+            <link rel="stylesheet" type="text/css" href="/css/login.css">
+            
     </head>
     <body>
-        <h1>This is where you Login Motherfuckerrr</h1>
-        <% if(message!=''){ %>
-            <h1><%=message%></h1>
-        <%}%>
-        <form method='POST' action='/login/'>
-            <input name='email' type='email' placeholder = 'Email'>
-            <input name='password' placeholder="Password">
-            <button type='submit'>Log In</button>
-        </form>
-        <a href='/login/signup'>Sign Up</a>
+            <div class="wrapper">
+                    <div class="container">
+                        <h1>Meet Moody, the AI-powered Journal</h1>
+                        <% if(message!=''){ %>
+                            <h1><%=message%></h1>
+                        <%}%>
+                        <form class="form" method='POST' action='/login/'>
+                            <input type="email" placeholder="Email" name='email'>
+                            <input type="password" placeholder="Password" name='password'>
+                            <button type="submit" id="login-button">Login</button>
+                        </form>
+                        <a href="/login/signup"><button>Signup</button></a>
+                        
+                    </div>
+                    
+                    <ul class="bg-bubbles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <script
+                src="https://code.jquery.com/jquery-2.2.4.min.js"
+                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+                crossorigin="anonymous"></script>
     </body>
 </html>
+

@@ -54,7 +54,6 @@ app.get('/new',(req,res,next)=>{
 })
 
 app.post('/new',(req,res)=>{
-    console.log(req.body)
     getWatson(req.body.message).then(res=> {
         //tone will be the full object
         let tone = res;
@@ -62,7 +61,7 @@ app.post('/new',(req,res)=>{
         let overallTone = tone.document_tone.tones;
         let date = new Date(req.body.date).toISOString();
         // write to a file
-        let item = new Item(req.body.message,date,toneSorter(overallTone),tone);
+        let item = new Item(req.body.message,date,toneSorter(overallTone),tone,req.session.user);
         //console.log(item);
         item.save();
     }).catch(err=> {
@@ -126,8 +125,6 @@ app.get('/',(req,res)=>{
     }
     
 })
-
-
 
 const server = http.createServer(app)
 
