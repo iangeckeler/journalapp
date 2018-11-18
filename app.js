@@ -93,7 +93,6 @@ app.get('/entry/:id',(req,res) => {
 
 app.delete('/edit/:id',(req,res)=>{
     deleteById(req.params.id).then(data=> {
-        console.log(data)
         res.redirect('/')
     }).catch(err=>{
         console.log(err)
