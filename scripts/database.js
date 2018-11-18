@@ -10,7 +10,7 @@ const pass = 'eHwR44nP7XzUU9u';
 const dbName = 'moody'
 
 const mongoUrl = 'mongodb://'+user+':'+pass+'@ds151068.mlab.com:51068/moody';
-const localMongoUrl = 'mongodb://localhost:27017'
+const localMongoUrl = 'mongodb://localhost:27017';
 
 const db =function (callback) {
     MongoClient.connect(mongoUrl).then(res=>{
@@ -26,4 +26,6 @@ const db =function (callback) {
 
 module.exports = {
     db:db,
-    dbName:dbName}
+    dbName:dbName,
+    mongoUrl:mongoUrl
+}

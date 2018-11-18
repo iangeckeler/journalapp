@@ -5,7 +5,8 @@ const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
 const bodyParser = require('body-parser');
-const session = require('express-session')
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const moment = require('moment');
 
 //auth routes
@@ -17,7 +18,7 @@ const Item = require('./models/item');
 const dataById = require('./scripts/databyid');
 const getById = dataById.getById;
 const deleteById = dataById.deleteById;
-
+const mongoUrl = require('./scripts/database').mongoUrl;
 const getEntries = require('./scripts/getentries');
 
 
@@ -26,9 +27,25 @@ const toneSorter = require('./scripts/toneSorter');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+
+//connect session store
+const store = new MongoDBStore({
+    uri: mongoUrl,
+    collection: 'mySessions'
+  });
+
+  // Catch errors
+store.on('error', function(error) {
+    assert.ifError(error);
+    assert.ok(false);
+  });
 app.use(
-    session({secret:'my secret', resave:true, saveUninitialized:true})
+    session({secret:'my secret', resave:true, saveUninitialized:true,store:store})
 )
+
+
+
+
 //check if loggedin
 app.use((req,res,next)=>{
     if (req.originalUrl =='/login' || 'css/login' || 'js/login') {
