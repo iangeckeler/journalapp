@@ -15,19 +15,21 @@ const Item  = class {
     };
 
     save() {
+        return new Promise((resolve,reject)=>{
         //connect to db
         connectDb(client => {
             let db = client.db(dbName);
             let item = {text: this.text, date: new Date(this.date),watsonObject: this.watsonObject,user:this.user,score:this.score};
             db.collection("items").insertOne(item).then(res => {
                 console.log("1 document inserted ");
-                console.log(item)
                 client.close();
+                resolve(res)
             console.log('connected to db')
                 }).catch(err => {
                     console.log(err);
-                    throw err
+                    reject(err)
                 })
+            })
         //save this.text
         })   
     }

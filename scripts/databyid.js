@@ -38,7 +38,7 @@ const deleteById = function (id) {
             db = client.db(dbName)
             items = db.collection('items')
             items.deleteOne({"_id": new ObjectID(id)}).then(res=>{
-                resolve(res)
+            resolve(res)
             }).catch(err=>{
                 reject(err);
             })
@@ -46,27 +46,11 @@ const deleteById = function (id) {
 })   
 }
 
-// const deleteById = function (id) {
-//     let db;
-//     let items;
-//     let array;
-//     // added the longer date to query for multiple weeks
-//     connectDb(client => {
-//         db = client.db("itemdb")
-//         items = db.collection('items')
-//         return items.deleteOne({"_id": new ObjectID(id)}).then(res=>{
-//             return res
-//         }).catch(err=>{
-//             console.log(err);
-//         })
-// })   
-// }
-
 // getById("5bf1e7cec1733c1ccc5e2bd0").then(res=>{
 //   console.log(res)
 // })
 
-// deleteById("5bf1e7cec1733c1ccc5e2bd0").then(res=>{
+// deleteById("5bf1ecae7c85d51e48316a2d").then(res=>{
 //     console.log(res)
 //   })
 

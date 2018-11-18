@@ -46,7 +46,7 @@
               <h5 class="card-title"><%= dates[i] %></h5>
               <p class="card-text"><%= data.text[i] %></p>
               <a href="/entry/<%= data.id[i]%>" class='btn'>View Entry</a>
-              <form action="/edit/<%=data._id%>?_method=DELETE" method='POST'>
+              <form action="/edit/<%=data.id[i]%>?_method=DELETE" method='POST'>
                 <button>Delete</button>
             </form>
             </div>

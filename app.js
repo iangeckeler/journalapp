@@ -54,20 +54,24 @@ app.get('/new',(req,res,next)=>{
 })
 
 app.post('/new',(req,res)=>{
-    getWatson(req.body.message).then(res=> {
+    getWatson(req.body.message).then(obj=> {
         //tone will be the full object
-        let tone = res;
+        let tone = obj;
         //console.log(tone)
         let overallTone = tone.document_tone.tones;
         let date = new Date(req.body.date).toISOString();
         // write to a file
         let item = new Item(req.body.message,date,toneSorter(overallTone),tone,req.session.user);
         //console.log(item);
-        item.save();
+        item.save().then(data=>{
+            res.redirect('/')
+        }).catch(err=>{
+            console.log(err)
+        });
     }).catch(err=> {
         console.log(err)
+        res.send('There was an error')
     })
-    res.redirect('/')
 })
 
 
@@ -88,7 +92,6 @@ app.get('/entry/:id',(req,res) => {
 })
 
 app.delete('/edit/:id',(req,res)=>{
-    console.log(req.params.id)
     deleteById(req.params.id).then(data=> {
         console.log(data)
         res.redirect('/')
@@ -115,6 +118,7 @@ app.get('/',(req,res)=>{
     if (req.session.loggedIn){
         getEntries('',req.session.user).then(data=> {
             let dates = data.x.map(num=>{return num.toISOString().substring(0,10)});
+            console.log(data.id)
             res.render('index.ejs', {data: data,dates:dates})
             }).catch(err=>{
                 res.render('index')
