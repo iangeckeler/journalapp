@@ -50,7 +50,7 @@ app.use(express.static(__dirname + '/views'))
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/new',(req,res,next)=>{
-    res.render('create.ejs');
+    res.render('create.ejs',{date:moment().toISOString()});
 })
 
 app.post('/new',(req,res)=>{

@@ -7,15 +7,15 @@
     display:block;
     margin:auto;
 }
+#nav-wrapper{
+    margin-top:25px;
+}
 
-.wrapper {
+body {
     background: #50a3a2;
     background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
 }
 
-#myDiv {
-  margin:auto;
-}
 
 button {
     -webkit-appearance: none;

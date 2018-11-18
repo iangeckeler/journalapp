@@ -5,6 +5,12 @@ const moment = require('moment')
 const mongoose = require('mongoose')
 const MongoClient =mongodb.MongoClient;
 
+const user = 'geckeler'
+const pass = 'eHwR44nP7XzUU9u';
+
+const mongoUrl = 'mongodb://'+user+':'+pass+'@ds151068.mlab.com:51068/moody';
+const localMongoUrl = 'mongodb://localhost:27017'
+
 const db =function (callback) {
     MongoClient.connect('mongodb://localhost:27017').then(res=>{
         callback(res)
