@@ -114,11 +114,12 @@ app.put('/edit/:id',(req,res)=> {
 
 app.get('/',(req,res)=>{
     if (req.session.loggedIn){
-        getEntries('',req.session.user).then(function(data) {
-            res.render('index.ejs',{data: data})
+        getEntries('',req.session.user).then(data=> {
+            let dates = data.x.map(num=>{return num.toISOString().substring(0,10)});
+            res.render('index.ejs', {data: data,dates:dates})
             }).catch(err=>{
                 res.render('index')
-                console.log('whoops')
+                console.log(err)
             })
     } else {
         res.redirect('/login')

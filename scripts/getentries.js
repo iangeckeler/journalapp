@@ -47,7 +47,7 @@ const getEntries = function (period, user) {
         }
 };  
 
-// getEntries('week','ian@peepee.com').then(res=>{
+// getEntries('','ikcgeckeler@gmail.com').then(res=>{
 //     console.log(res)
 // })
 
