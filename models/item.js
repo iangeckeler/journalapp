@@ -2,6 +2,7 @@
 const moment = require('moment');
 const mongodb = require('mongodb');
 MongoClient = mongodb.MongoClient;
+const connectDb = require('../scripts/database');
 
 const Item  = class {
     constructor (text,date,score,watsonObject,user) {
@@ -14,8 +15,8 @@ const Item  = class {
 
     save() {
         //connect to db
-        MongoClient.connect('mongodb://localhost:27017').then(client => {
-            let db = client.db("itemdb");
+        connectDb(client => {
+            let db = client.db(dbName);
             let item = {text: this.text, date: new Date(this.date),watsonObject: this.watsonObject,user:this.user,score:this.score};
             db.collection("dummy").insertOne(item).then(res => {
                 console.log("1 document inserted ");

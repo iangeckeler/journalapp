@@ -1,6 +1,7 @@
 //script to define the Item class for the data.
 const mongodb = require('mongodb');
-const db = require('../scripts/database')
+const db = require('../scripts/database').db;
+const dbName = require('../scripts/database').dbName;
 
 const User  = class {
     constructor (email,password) {
@@ -11,7 +12,7 @@ const User  = class {
     save() {
         //remember, db is a database
         db(client=>{
-            let db = client.db('itemdb');
+            let db = client.db(dbName);
             let user = {email: this.email, password: this.password};
             db.collection('users').insertOne(user).then(res=>{
                 console.log('1 user successfully inserted')
@@ -25,7 +26,7 @@ const User  = class {
     exists() {
         return new Promise((resolve,reject)=>{
             db(client=>{
-                let db = client.db('itemdb');
+                let db = client.db(dbName);
                 db.collection('users').findOne({email: this.email}).then(res=>{
                     if (res != null) {
                         resolve(true)
@@ -44,7 +45,7 @@ const User  = class {
     validate() {
         return new Promise((resolve,reject) => {
             db(client =>{
-                let db = client.db('itemdb');
+                let db = client.db(dbName);
                 db.collection('users').findOne({email:this.email}).then(res=>{
                     if(res != null){
                         if(res.password==this.password){

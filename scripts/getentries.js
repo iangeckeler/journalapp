@@ -2,14 +2,15 @@ const moment = require('moment');
 const mongodb = require('mongodb');
 MongoClient = mongodb.MongoClient;
 
-const connectDb = require('./database')
+const connectDb = require('./database').db;
+const dbName = require('./database').dbName;
 const happyScoreArray = require('./happyscore')
 
 //returns the data
 const getEntries = function (period, user) {
     let startDate;
     let endDate;
-    let collectionName = 'dummy'
+    let collectionName = 'items'
     switch (period) {
         case 'week':
             startDate = moment().subtract(1, 'week').toISOString()
@@ -29,7 +30,7 @@ const getEntries = function (period, user) {
     } else {
         return new Promise((resolve,reject)=>{
             connectDb(client => {
-                db = client.db('itemdb');
+                db = client.db(dbName);
                 items = db.collection(collectionName)
                 items.find({"date": {"$gte": new Date(startDate), "$lt": new Date(endDate)}, "user": user}).toArray().then(arr => {
                     let data;
