@@ -7,8 +7,20 @@
     display:block;
     margin:auto;
 }
+
+.col-item {
+    margin-top:10px;
+}
+
+@media only screen and (max-width: 600px) {
+    #cards .card {
+        width: 95%;
+    }
+}
+
 #nav-wrapper{
     margin-top:25px;
+    margin:auto;
 }
 
 body {

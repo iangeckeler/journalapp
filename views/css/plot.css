@@ -17,3 +17,8 @@ body {
   background: #50a3a2;
   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
 }
+@media only screen and (max-width: 600px) {
+  .card {
+      width: 95%;
+  }
+}

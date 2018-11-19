@@ -2,6 +2,14 @@ console.log('working');
 // console.log(data)
 // myPlot = Plotly.newPlot('myDiv', data);
 
+//detect mobile browser
+function detectmob() {
+    if(window.innerWidth <= 800 && window.innerHeight <= 600) {
+      return true;
+    } else {
+      return false;
+    }
+ }
 
 var myPlot = document.getElementById('myDiv'),
     d3 = Plotly.d3,

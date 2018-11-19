@@ -100,6 +100,8 @@ form input:focus {
   width: 300px;
   color: #53e3a6;
 }
+
+
 button {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -230,5 +232,17 @@ button:hover {
   100% {
     -webkit-transform: translateY(-700px) rotate(600deg);
             transform: translateY(-700px) rotate(600deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  form input {
+    width:400px;
+  }
+  form input:focus {
+    width:400px;
+  }
+  button {
+    width: 400px;
   }
 }
