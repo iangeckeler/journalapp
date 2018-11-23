@@ -130,6 +130,7 @@ app.put('/edit/:id',(req,res)=> {
 })
 
 app.get('/',(req,res)=>{
+    console.log(req.session.user)
     if (req.session.loggedIn){
         getEntries('',req.session.user).then(data=> {
             let dates = data.x.map(num=>{return num.toISOString().substring(0,10)});

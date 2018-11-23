@@ -24,6 +24,7 @@ router.post('/',(req,res)=>{
                 if (validated) {
                     req.session.loggedIn = true;
                     req.session.user = user.email;
+                    res.send(req.session)
                     res.redirect('/')
                 } else {
                     res.render('login.ejs',{message:"Oops, incorrect password"})
